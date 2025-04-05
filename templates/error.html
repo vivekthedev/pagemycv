@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #f9f7f1;
+            background-image:
+                radial-gradient(#e6e2d3 20%, transparent 20%),
+                radial-gradient(#e6e2d3 20%, transparent 20%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            overflow-x: hidden;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .error-container {
+            max-width: 600px;
+            margin: 5rem auto;
+            padding: 2rem;
+            border: 3px dashed #3298dc;
+            border-radius: 1rem;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .error-bubble {
+            background-color: #f63d68;
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            font-size: 2rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+            transform: rotate(-5deg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+        }
+
+        .error-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            border: 10px solid transparent;
+            border-top-color: #f63d68;
+            transform: translateX(-50%);
+        }
+
+        .error-message {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #333;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .try-again-btn {
+            background-color: #3298dc;
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border-radius: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .try-again-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            background-color: #2589cc;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="error-container">
+            <div class="error-bubble">
+                UH OH!
+            </div>
+
+            <div class="error-message">
+                SOMETHING WENT WRONG!
+            </div>
+
+            <div class="subtitle has-text-grey mb-5">
+                {{ message }}
+            </div>
+
+            <a href="/" class="button try-again-btn">
+                <span class="icon">
+                    <i class="fas fa-redo"></i>
+                </span>
+                <span>TRY AGAIN</span>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

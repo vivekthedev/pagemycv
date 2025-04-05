@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivek Kumar Singh - Resume</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        :root {
+            --primary-color: #00b2ca;
+            --secondary-color: #7b68ee;
+            --text-color: #333333;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --hover-color: rgba(0, 178, 202, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 50%, #c5cae9 100%);
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Particle animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 178, 202, 0.3);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(-70vh) translateX(30vw);
+                opacity: 0.2;
+            }
+
+            75% {
+                opacity: 0.1;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 2rem 1.5rem;
+        }
+
+        .box {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--hover-color), transparent);
+            transition: all 0.6s;
+        }
+
+        .box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .box:hover::before {
+            left: 100%;
+        }
+
+        .title,
+        .subtitle {
+            color: var(--text-color);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .title.is-2 {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .icon-text .icon {
+            color: var(--primary-color);
+        }
+
+        a {
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        .tag {
+            background-color: rgba(0, 178, 202, 0.15);
+            color: var(--primary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+            font-weight: 500;
+        }
+
+        .tag:hover {
+            background-color: rgba(123, 104, 238, 0.15);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        #tag_font {
+            font-size: 1.2rem;
+        }
+
+        /* Typing effect for heading */
+        .typing-effect::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Section heading underline effect */
+        .title.is-4 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .title.is-4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: width 0.4s ease;
+        }
+
+        .title.is-4:hover::after {
+            width: 100%;
+        }
+
+        /* Custom list styling */
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: translateX(5px);
+        }
+
+        ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Social links styling */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            color: var(--primary-color);
+        }
+
+        .social-link:hover {
+            background: rgba(0, 178, 202, 0.2);
+            transform: translateY(-5px);
+            color: var(--secondary-color);
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glow effect on hover for main title */
+        .glow-on-hover:hover {
+            text-shadow: 0 0 10px rgba(0, 178, 202, 0.5), 0 0 20px rgba(0, 178, 202, 0.3);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+        }
+
+        /* Header effect */
+        .profile-header {
+            position: relative;
+            overflow: hidden;
+            padding: 3rem 0;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(123, 104, 238, 0.1) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .skills-container {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="particles" id="particles"></div>
+
+    <section class="section profile-header has-text-centered">
+        {% if name %}
+        <h1 class="title is-2 glow-on-hover typing-effect" id="name">{{ name }}</h1>
+        {% endif %}
+
+        {% if email %}
+        <p class="animate__animated animate__fadeIn animate__delay-1s">
+            <i class="fas fa-envelope"></i> {{ email }}
+        </p>
+        {% endif %}
+
+        {% if links %}
+        <div class="animate__animated animate__fadeIn animate__delay-2s" style="margin-top: 2em;">
+            {% for link in links %}
+            <a href="{{ link }}" target="_blank"
+                style="box-shadow: 0 4px 8px rgba(50, 115, 220, 0.3); padding: 1em; margin-left: 1em;">
+                <span>{{ link }}</span>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </section>
+
+    {% if experience %}
+    <section class="section fade-in">
+        <div class="container">
+            <h2 class="title is-4">Experience</h2>
+            {% for job in experience %}
+            <div class="box animate__animated animate__fadeInUp">
+                <h3 class="title is-5">{{ job.workplace_position }} @ {{ job.workplace_name }}</h3>
+                <p class="is-italic">{{ job.workplace_date }}</p>
+                <ul>
+                    {% for detail in job.workplace_details %}
+                    <li>{{ detail }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {% if education %}
+    <section class="section fade-in">
+        <div class="container">
+            <h2 class="title is-4">Education</h2>
+            <div class="columns is-multiline">
+                {% for edu in education %}
+                <div class="column is-one-third">
+                    <div class="box animate__animated animate__fadeInUp animate__delay-{{ loop.index }}s">
+                        <strong>{{ edu.institution_course }}</strong><br>
+                        {{ edu.institution_name }}<br>
+                        <small>{{ edu.institution_date }}</small>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if projects %}
+    <section class="section fade-in">
+        <div class="container">
+            <h2 class="title is-4">Projects</h2>
+            <div class="columns is-multiline">
+                {% for project in projects %}
+                <div class="column is-one-third">
+                    <div class="box animate__animated animate__fadeInUp animate__delay-{{ loop.index0 }}s">
+                        <strong>{{ project.project_name }}</strong>
+                        {% if project.project_tech_stack %}
+                        <p class="is-size-7">{{ project.project_tech_stack | join(', ') }}</p>
+                        {% endif %}
+                        {% if project.project_date %}
+                        <p class="is-size-7">({{ project.project_date }})</p>
+                        {% endif %}
+                        <ul>
+                            {% for detail in project.project_details %}
+                            <li>{{ detail }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if skills %}
+    <section class="section fade-in">
+        <div class="container">
+            <h2 class="title is-4">Skills</h2>
+            <div class="skills-container">
+                <div class="tags animate__animated animate__fadeIn">
+                    {% for skill in skills %}
+                    <span class="tag" id="tag_font">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if notable_things_and_acheivements %}
+    <section class="section fade-in">
+        <div class="container">
+            <h2 class="title is-4">Achievements</h2>
+            <div class="box animate__animated animate__fadeIn">
+                <ul>
+                    {% for item in notable_things_and_acheivements %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    {% endif %}
+    <script>
+        // Create particles for background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random size
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Random position
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.left = `${Math.random() * 100}vw`;
+
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Typing effect for name
+        function typeEffect() {
+            const nameElement = document.getElementById('name');
+            const fullName = nameElement.textContent;
+            nameElement.textContent = '';
+            nameElement.classList.add('typing-effect');
+
+            let i = 0;
+            const typingInterval = setInterval(() => {
+                if (i < fullName.length) {
+                    nameElement.textContent += fullName.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    nameElement.classList.remove('typing-effect');
+                }
+            }, 100);
+        }
+
+        // Scroll animation for sections
+        function handleScrollAnimation() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            typeEffect();
+            handleScrollAnimation();
+        });
+    </script>
+</body>
+
+</html>

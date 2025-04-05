@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PageMyCV - Turn Resume to Website</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Comic style custom CSS */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #f9f7f1;
+            background-image:
+                radial-gradient(#e6e2d3 20%, transparent 20%),
+                radial-gradient(#e6e2d3 20%, transparent 20%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+        }
+
+        .comic-title {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #fff;
+        }
+
+        .subtitle {
+            font-weight: bold;
+        }
+
+        .title {
+            font-weight: 100;
+        }
+
+        .splash {
+            position: absolute;
+            background-color: #FF9F1C;
+            width: 250px;
+            height: 250px;
+            border-radius: 50% 50% 50% 10%;
+            transform: rotate(-25deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            right: 10%;
+            top: 20px;
+            animation: pulse 4s infinite alternate;
+        }
+
+        .splash-text {
+            transform: rotate(25deg);
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .upload-area {
+            border: 3px dashed #2EC4B6;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            background-color: white;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #2EC4B6;
+        }
+
+        .boom-box {
+            position: relative;
+            display: inline-block;
+        }
+
+        .boom {
+            position: absolute;
+            background-color: #FF3366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            transform: rotate(10deg);
+            top: -20px;
+            right: -30px;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .boom:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #FF3366 transparent;
+        }
+
+        .feature-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 3px solid #011627;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+        }
+
+        .zigzag {
+            position: relative;
+            height: 40px;
+            margin: 2rem 0;
+        }
+
+        .zigzag:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(45deg, transparent 33.333%, #2EC4B6 33.333%, #2EC4B6 66.667%, transparent 66.667%),
+                linear-gradient(-45deg, transparent 33.333%, #2EC4B6 33.333%, #2EC4B6 66.667%, transparent 66.667%);
+            background-size: 40px 40px;
+            background-position: 0 0;
+        }
+
+        .cta-button {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+            transform: rotate(-2deg);
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: rotate(0) scale(1.05);
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: rotate(-25deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(-20deg) scale(1.05);
+            }
+
+            100% {
+                transform: rotate(-25deg) scale(1);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        /* Speech bubbles */
+        .speech-bubble {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            border: 3px solid #011627;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 20px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #011627 transparent;
+        }
+
+        .speech-bubble.alt:after {
+            left: auto;
+            right: 20px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #FF3366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            color: white;
+            margin-right: 15px;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .how-it-works-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media screen and (min-width: 769px) {
+            .how-it-works-container {
+                flex-direction: row;
+                align-items: stretch;
+            }
+
+            .step-container {
+                flex: 1;
+                margin: 0 10px;
+                display: flex;
+            }
+        }
+
+        .comic-file-input .file {
+            border: 3px dashed #2EC4B6;
+            border-radius: 15px;
+            padding: 1rem;
+            background-color: #f9f7f1;
+            transition: all 0.3s;
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .comic-file-input .file:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comic-file-input .file-cta {
+            font-family: 'Bangers', cursive;
+            color: #011627;
+            letter-spacing: 1px;
+        }
+
+        .comic-file-input .file-cta:hover {
+            color: #FF3366;
+        }
+
+        .comic-file-input .file-name {
+            font-family: 'Comic Neue', cursive;
+            color: #011627;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero is-primary is-bold is-medium">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-7">
+                        <h1 class="title is-1 comic-title" style="font-size: 4rem; color: #FDFFFC;">
+                            <span style="color: #FF9F1C;">Page</span><span style="color: #2EC4B6;">My</span><span
+                                style="color: #FF3366;">CV</span>
+                        </h1>
+                        <h2 class="subtitle is-3 mt-4" style="color: #FDFFFC;">
+                            Turn Your Resume Into An Awesome Website!
+                        </h2>
+                        <p class="is-size-5 mt-4" style="color: #FDFFFC;">
+                            Upload your boring resume. Get a super cool website in seconds!
+                            No coding required. Just magic. ✨
+                        </p>
+                        <div class="buttons mt-6">
+                            <button class="button is-large is-warning cta-button">
+                                <span class="icon">
+                                    <i class="fas fa-rocket"></i>
+                                </span>
+                                <a href="#upload-section">
+
+                                    <span>Get Started Now!</span>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="column is-5 is-hidden-mobile">
+                        <div class="splash">
+                            <p class="splash-text">100% Free!</p>
+                        </div>
+                        <img src="https://picsum.photos/id/9/300" alt="Resume to Website Illustration" class="bounce"
+                            style="border-radius: 15px; box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="section" id="upload-section">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="upload-area has-text-centered">
+                        <div class="boom-box">
+                            <span class="icon upload-icon">
+                                <i class="fas fa-file-upload"></i>
+                            </span>
+                            <div class="boom">So Easy!</div>
+                        </div>
+                        <h3 class="title is-3 mt-4 comic-title" style="color: #011627;">
+                            Upload Your Resume
+                        </h3>
+                        <p class="subtitle is-5 mb-5">
+                            Drag & drop your PDF file here
+                        </p>
+
+                        <!-- FORM for file upload -->
+                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                            <div class="field">
+                                <div class="control is-expanded">
+                                    <div
+                                        class="file has-name is-boxed is-info comic-file-input is-justify-content-center">
+                                        <label class="file-label">
+                                            <input class="file-input" type="file" name="pdf_file"
+                                                accept="application/pdf" required>
+                                            <span class="file-cta">
+                                                <span class="icon">
+                                                    <i class="fas fa-file-upload"></i>
+                                                </span>
+                                                <span class="file-label-text">Choose a file…</span>
+                                            </span>
+                                            <span class="file-name">No file selected</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field has-text-centered">
+                                <div class="control">
+                                    <button type="submit" class="button is-info is-medium cta-button">
+                                        <span class="icon">
+                                            <i class="fas fa-folder-open"></i>
+                                        </span>
+                                        <span>Submit</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="zigzag"></div>
+
+    <!-- How It Works Section -->
+    <section class="section" style="background-color: #FDFFFC;">
+        <div class="container">
+            <h2 class="title is-2 has-text-centered comic-title mb-6" style="color: #011627;">How It Works</h2>
+
+            <div class="how-it-works-container">
+                <!-- Step 1 -->
+                <div class="step-container">
+                    <div class="speech-bubble left">
+                        <div class="step-content">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h3 class="title is-4">Upload Your Resume</h3>
+                                <p class="is-size-5">Just drag & drop your PDF or DOCX resume file into our magical
+                                    converter!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-container">
+                    <div class="speech-bubble">
+                        <div class="step-content">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h3 class="title is-4">Our AI Does Its Magic</h3>
+                                <p class="is-size-5">Our super smart AI extracts all your awesome skills and experience!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-container">
+                    <div class="speech-bubble right">
+                        <div class="step-content">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h3 class="title is-4">Get Your Website</h3>
+                                <p class="is-size-5">Boom! Your professional resume website is ready to share with the
+                                    world!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="zigzag" style="transform: rotate(180deg);"></div>
+
+    <!-- Footer -->
+    <footer class="footer has-background-dark">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <h3 class="title is-4 comic-title" style="color: #FDFFFC;">
+                        <span style="color: #FF9F1C;">Page</span><span style="color: #2EC4B6;">My</span><span
+                            style="color: #FF3366;">CV</span>
+                    </h3>
+                    <p style="color: #FDFFFC;">Turn your resume into an awesome website in seconds!</p>
+                </div>
+
+            </div>
+            <div class="has-text-centered mt-6" style="color: #FDFFFC;">
+                <p>&copy; 2025 PageMyCV. All rights reserved.</p>
+            </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add some fun animations and interactions
+
+            // Make buttons pulse on hover
+            const buttons = document.querySelectorAll('.cta-button');
+            buttons.forEach(button => {
+                button.addEventListener('mouseover', () => {
+                    button.classList.add('is-pulse');
+                });
+                button.addEventListener('mouseout', () => {
+                    button.classList.remove('is-pulse');
+                });
+            });
+
+            // Simulate file upload functionality
+            const uploadArea = document.querySelector('.upload-area');
+            const browseButton = uploadArea.querySelector('.button');
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#FF3366';
+                uploadArea.style.backgroundColor = '#f0f0f0';
+            });
+
+            uploadArea.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#2EC4B6';
+                uploadArea.style.backgroundColor = 'white';
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#2EC4B6';
+                uploadArea.style.backgroundColor = 'white';
+
+                // Show a fun message when a file is dropped
+                const boom = document.querySelector('.boom');
+                boom.textContent = 'Awesome!';
+                setTimeout(() => {
+                    boom.textContent = 'So Easy!';
+                }, 2000);
+            });
+
+            browseButton.addEventListener('click', () => {
+                // Show a fun message when browse button is clicked
+                const boom = document.querySelector('.boom');
+                boom.textContent = 'Let\'s Go!';
+                setTimeout(() => {
+                    boom.textContent = 'So Easy!';
+                }, 2000);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileInput = document.querySelector('.file-input');
+            const fileName = document.querySelector('.file-name');
+
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    fileName.textContent = fileInput.files[0].name;
+                } else {
+                    fileName.textContent = 'No file selected';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
